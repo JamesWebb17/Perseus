@@ -13,13 +13,13 @@
 /**
  * @brief indique si le programme se lancera en mode debug ou non
  **/
-#define debug 1	
+#define debug 0
 
 
 /**
  * @brief nombre de donnée à sauvegarder avant d'update les fichirers
  **/			
-#define Entries_before_update 3		
+#define Entries_before_update 4	
 
 /**
  * @brief Fonction qui sauvegarde sur la carte SD les 

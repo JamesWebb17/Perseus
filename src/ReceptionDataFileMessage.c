@@ -41,7 +41,7 @@ Message receptionCentrale(void) {
         exit(EXIT_FAILURE);
     }
            
-    return message ;
+    return message;
 
 }
 
@@ -58,6 +58,7 @@ Message receptionCentrale(void) {
 Message receptionSauvegarde(void) {
 
     Message message;
+	//printf("\n Reception file sauvegarde\n");
     ssize_t recv_size = mq_receive(FileDeMessage.file_message_Sauvegarde, (char*) &message, sizeof(Message), NULL);
 
     if (recv_size == -1) {
@@ -70,6 +71,29 @@ Message receptionSauvegarde(void) {
         perror("mq_getattr");
         exit(EXIT_FAILURE);
     }
+	//printf("\n reception file sauvegarde finie\n");
+           
+    return message ;
+
+}
+
+Message receptionEmetteur(void) {
+
+    Message message;
+	//printf("\n Reception file Emetteur \n");
+    ssize_t recv_size = mq_receive(FileDeMessage.file_message_Emetteur, (char*) &message, sizeof(Message), NULL);
+
+    if (recv_size == -1) {
+        perror("Erreur lors de la réception du message : ");
+        printf("errno = %d\n", errno);
+    }
+
+    struct mq_attr attr;
+    if (mq_getattr(FileDeMessage.file_message_Emetteur, &attr) == -1) {
+        perror("mq_getattr");
+        exit(EXIT_FAILURE);
+    }
+	//printf("\n reception file Emetteur finie\n");
            
     return message ;
 
